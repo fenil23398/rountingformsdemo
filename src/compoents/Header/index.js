@@ -9,9 +9,9 @@ export default class Header extends Component {
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="#home">Demo</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <NavLink to='/home'>Home</NavLink>
-                        <NavLink to='/form1'>Form1</NavLink>
-                        <NavLink to='/form2'>Form2</NavLink>
+                        <NavLink to='/home' className="nav-link">Home </NavLink>&nbsp;
+                        <NavLink to='/form1' className="nav-link">Form1 </NavLink>&nbsp;
+                        <NavLink to='/form2' className="nav-link">Form2</NavLink> &nbsp;
                     </Nav>
                 </Navbar>
             </div>
