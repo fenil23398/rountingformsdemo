@@ -13,7 +13,7 @@ export default class Routing extends Component {
                 <Header />
                   <Switch>
                     <Route exact path='/home' component={MainFile} />
-                    {/* The below script is to Follow pass Props */}
+                    {/* The below Route is to pass Props */}
                     <Route exact path='/form1' component={()=><Form1 />} />
                     <Route path='/form2' component={Form2} />
                     <Redirect to="/home" />
