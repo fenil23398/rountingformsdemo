@@ -24,6 +24,7 @@ export default class Form1 extends Component {
     //field inside that event is necessary as event is necessary to call it only once
     handleBlur = (field) => {
         console.log("handleBlur field", field, "event ");
+        //Need to copy old Touched state first and dn update field
         this.setState({
             touched: {
                 ...this.state.touched,
@@ -53,6 +54,10 @@ export default class Form1 extends Component {
         const touched = { ...this.state.touched }
         if (touched.firstName && (firstName + "").length < 3)
             errors.firstName = 'First Name must be more than 3 Characters'
+        else if (touched.firstName && (firstName + "").length > 8)
+            errors.firstName = 'First Name must be less than 8 Characters'
+
+
         console.log("Error Object ", errors)
         return errors;
     }
@@ -84,6 +89,7 @@ export default class Form1 extends Component {
                                         onChange={this.handleInputChange}
                                         onBlur={() => this.handleBlur('firstName')}
                                     />
+                                    {/* for form control Feedback need to pass is isValid or isinvalid */}
                                     <Form.Control.Feedback type="invalid">
                                         {errors.firstName}
                                     </Form.Control.Feedback>
@@ -94,12 +100,24 @@ export default class Form1 extends Component {
                             <Form.Group as={Row}>
                                 <Form.Label htmlFor="lastName" column sm={2}>Last Name</Form.Label>
                                 <Col sm="10">
-                                    <Form.Control type="text" id="lastName" name="lastName"
+                                    <Form.Control
+                                        type="text"
+                                        id="lastName"
+                                        name="lastName"
+                                        required
                                         placeholder="Last Name"
+                                        isValid={
+                                            this.state.touched.lastName
+                                            &&
+                                            errors.lastName === ''}
+                                        isInvalid={errors.lastName !== ''}
                                         value={this.state.lastName}
                                         onChange={this.handleInputChange}
                                         onBlur={() => this.handleBlur('lastName')}
                                     />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.lastName}
+                                    </Form.Control.Feedback>
                                 </Col>
                             </Form.Group>
 
@@ -107,12 +125,24 @@ export default class Form1 extends Component {
                             <FormGroup as={Row}>
                                 <Form.Label htmlFor="telePhone" column sm={2}>Telephone No.</Form.Label>
                                 <Col sm="10">
-                                    <Form.Control type="tel" id="telePhone" name="telNo"
+                                    <Form.Control
+                                        type="tel"
+                                        id="telePhone"
+                                        name="telNo"
+                                        required
                                         placeholder="Telephone No"
+                                        isValid={
+                                            this.state.touched.telNo
+                                            &&
+                                            errors.telNo === ''}
+                                        isInvalid={errors.telNo !== ''}
                                         value={this.state.telNo}
                                         onChange={this.handleInputChange}
                                         onBlur={() => this.handleBlur('telNo')}
                                     />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.telNo}
+                                    </Form.Control.Feedback>
                                 </Col>
                             </FormGroup>
 
@@ -120,12 +150,24 @@ export default class Form1 extends Component {
                             <FormGroup as={Row}>
                                 <Form.Label htmlFor="email" column sm={2}>Email.</Form.Label>
                                 <Col sm="10">
-                                    <Form.Control type="email" id="email" name="email"
+                                    <Form.Control
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
                                         placeholder="Email Address"
+                                        isValid={
+                                            this.state.touched.email
+                                            &&
+                                            errors.email === ''}
+                                        isInvalid={errors.email !== ''}
                                         value={this.state.email}
                                         onChange={this.handleInputChange}
                                         onBlur={() => this.handleBlur('email')}
                                     />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.email}
+                                    </Form.Control.Feedback>
                                 </Col>
                             </FormGroup>
 
