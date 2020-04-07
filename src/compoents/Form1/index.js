@@ -57,6 +57,20 @@ export default class Form1 extends Component {
         else if (touched.firstName && (firstName + "").length > 8)
             errors.firstName = 'First Name must be less than 8 Characters'
 
+        if (touched.lastName && (lastName + "").length < 3)
+            errors.lastName = 'Last Name must be more than 3 Characters'
+        else if (touched.firstName && (firstName + "").length > 8)
+            errors.lastName = 'Last Name must be less than 8 Characters'
+
+        const reg = /^\d+$/;
+        if(touched.telNo && telNo.length!==10)
+            errors.telNo = 'Tel. Number must be of 10 Digits'
+        if (touched.telNo && !reg.test(telNo))
+            errors.telNo = 'Tel. Number should contain only numbers';
+                
+        if (touched.email && email.split('').filter(x => x === '@').length !== 1) 
+            errors.email = 'Email should contain a @';
+
 
         console.log("Error Object ", errors)
         return errors;
